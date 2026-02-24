@@ -11,8 +11,16 @@ AI agents are powerful, but they consume resources — compute, API calls, token
 
 ### Iteration Management
 
-Maximum Iterations: Limit steps to avoid runaway loops.
+**Maximum Iterations:** Limit steps to avoid runaway loops.
 
-Adaptive Iteration: Stop early if goal is reached.
+**Adaptive Iteration:** Stop early if goal is reached.
 
-Escalation Trigger: If iteration threshold exceeded, escalate to human or fallback.
+**Escalation Trigger:** If iteration threshold exceeded, escalate to human or fallback.
+
+### Token / Compute Budget
+
+**Token Limit:** Max tokens per LLM call to avoid overuse
+
+**Batching / Summarization:** Reduce repeated calls to large memory contexts
+
+**Model Selection:** Use smaller models when possible; reserve large models for critical tasks
