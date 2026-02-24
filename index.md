@@ -34,15 +34,21 @@ Cost-Aware Policies: Skip or defer low-priority actions
 Circuit Breakers: Stop calls if costs exceed thresholds
 
 
-graph TD
-    A[User Query] --> B[API Gateway / API Management]
-    B -->|Rate-Limited| C[Policy: Function / Container App]
-    C --> D[Policy Gate / Guidelines Evaluation]
-    D -->|Logs & Audit| E[LLM / Declarative Reasoning: Azure OpenAI]
-    E --> F[Guardrails / Safety Checks]
-    F -->|Escalate / Block| G[Execution Layer: Azure Functions / Container Apps]
-    G --> H[STM / Redis]
-    G --> I[LTM / Cosmos DB + Vector Search]
-    H -.->|Update| G
-    I -.->|Summarize & Store| G
-    G --> J[Feedback Loop: Monitor, ML, Audit Logs]
+[User Query]
+      │
+[API Gateway / Management] (Rate-limited)
+      │
+[Policy (Function / Container App)]
+      │
+[Policy Gate / Guidelines] ───→ (Logs & Audit)
+      │
+[LLM / Declarative Reasoning] (Azure OpenAI)
+      │
+[Guardrails / Safety Checks] ──→ (Escalate/Block)
+      │
+[Execution Layer] (Functions / Containers)
+      │
+      ├────→ [STM / Redis] (Update)
+      └────→ [LTM / Cosmos DB + Vector] (Summarize/Store)
+      │
+[Feedback Loop / Monitor / ML / Audit]
