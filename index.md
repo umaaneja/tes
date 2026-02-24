@@ -32,3 +32,23 @@ Quota Limits: Limit number of external calls per session
 Cost-Aware Policies: Skip or defer low-priority actions
 
 Circuit Breakers: Stop calls if costs exceed thresholds
+
+
+User Query
+    ↓
+[API Gateway / API Management] → rate-limited
+    ↓
+[Policy (Function / Container App)]
+    ↓
+[Policy Gate / Guidelines Evaluation] → logs & audit
+    ↓
+[LLM / Declarative Reasoning] (Azure OpenAI)
+    ↓
+[Guardrails / Safety Checks] → escalate/block
+    ↓
+[Execution Layer] → Azure Functions / Container Apps
+    ↓
+[STM / Redis]  ← update
+[LTM / Cosmos DB + Vector Search] ← summarize & store
+    ↓
+[Feedback Loop → Monitor, ML, Audit Logs]
