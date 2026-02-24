@@ -24,3 +24,11 @@ AI agents are powerful, but they consume resources — compute, API calls, token
 **Batching / Summarization:** Reduce repeated calls to large memory contexts
 
 **Model Selection:** Use smaller models when possible; reserve large models for critical tasks
+
+###  Action / API Call Cost Management
+
+Quota Limits: Limit number of external calls per session
+
+Cost-Aware Policies: Skip or defer low-priority actions
+
+Circuit Breakers: Stop calls if costs exceed thresholds
