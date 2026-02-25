@@ -1,0 +1,78 @@
+1. App / Client Plane
+
+This is what your users interact with.
+
+User tasks and typed requests
+
+Identity + intent capture
+
+SLA and priority indicators
+➡️ This plane does not have direct tool access.
+
+2. Agent Control Plane (Runtime)
+
+This is the brain of the agent.
+
+It handles:
+
+✔ Orchestration (state machine)
+✔ Workflow state store (deterministic)
+✔ Policy and budgets (rate limits, cost caps)
+✔ Retry/Idempotency & tool gating
+✔ Step, progress, stop conditions
+
+Its role is to convert request + identity context into plan + results.
+
+3. Model Plane
+
+This is where the LLMs live.
+
+General LLMs — reasoning & generation
+
+Optional specialist LLMs
+
+Optional embeddings & reranker
+
+📌 Models do not call tools directly — everything goes through governance.
+
+4. Tool Plane (MCP Gateway)
+
+Manages access to external tools:
+
+Tool registry
+
+Allowlists & scopes
+
+Authorization per tool
+
+Audit logs for every invocation
+
+Principles emphasized: least privilege, deny by default, tool contracts.
+
+5. Internal Data & Systems
+
+Trusted internal sources the agent can use:
+
+Ticketing / ITSM
+
+Knowledge base / search
+
+Databases / queues
+
+Workflows / runbooks
+
+Results and metadata go back into the agent.
+
+6. External Web Access (Optional)
+
+If the agent needs to use the web:
+
+Domain allowlist
+
+Content sanitization
+
+Prompt-injection defenses
+
+Rate limits + timeouts
+
+Treated as untrusted input — outputs should be text with citations.
